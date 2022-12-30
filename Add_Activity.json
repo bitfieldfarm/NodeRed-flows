@@ -1,0 +1,99 @@
+[
+    {
+        "id": "772d529e5bd1c7a7",
+        "type": "subflow",
+        "name": "Add activity",
+        "info": "When triggered the node adds a simple\nactivity log in FarmOS.\nTitle, note and days ahead is the only \nfields.",
+        "category": "",
+        "in": [
+            {
+                "x": 40,
+                "y": 100,
+                "wires": [
+                    {
+                        "id": "0fac84928d22f9c7"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [
+            {
+                "name": "Days from today",
+                "type": "num",
+                "value": "1"
+            },
+            {
+                "name": "Title",
+                "type": "str",
+                "value": "Remember to..."
+            },
+            {
+                "name": "Note",
+                "type": "str",
+                "value": ""
+            }
+        ],
+        "meta": {},
+        "color": "#D7D7A0",
+        "icon": "font-awesome/fa-leaf"
+    },
+    {
+        "id": "0fac84928d22f9c7",
+        "type": "function",
+        "z": "772d529e5bd1c7a7",
+        "name": "function 35",
+        "func": "var today = new Date();\nvar dager = env.get(\"Days from today\");\ntoday.setDate(today.getDate() + dager);\nvar unixTimestamp = Math.round(new Date(today).getTime() / 1000);\ntoday = unixTimestamp;\n\nmsg.payload = \n{\n    \"data\": {\n        \"type\": \"log--activity\",\n            \"attributes\": {\n            \"name\": env.get(\"Title\"),\n            \"status\": \"pending\",\n            \"notes\": env.get(\"Note\"),\n            \"timestamp\": today,\n        }\n    }\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 100,
+        "wires": [
+            [
+                "7101264805454d66"
+            ]
+        ]
+    },
+    {
+        "id": "7101264805454d66",
+        "type": "sf:949541c9b70110d5",
+        "z": "772d529e5bd1c7a7",
+        "name": "",
+        "API": "log/activity",
+        "Method": "POST",
+        "x": 570,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3feb34aeb816bed2",
+        "type": "subflow:772d529e5bd1c7a7",
+        "z": "ae72b941.c54948",
+        "name": "",
+        "env": [
+            {
+                "name": "Days from today",
+                "value": "30",
+                "type": "num"
+            },
+            {
+                "name": "Title",
+                "value": "Fyll på salt",
+                "type": "str"
+            },
+            {
+                "name": "Dates from today",
+                "value": "2",
+                "type": "num"
+            }
+        ],
+        "x": 630,
+        "y": 280,
+        "wires": []
+    }
+]
