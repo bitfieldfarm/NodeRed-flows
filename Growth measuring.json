@@ -1,0 +1,823 @@
+[
+    {
+        "id": "6dfa64bb3b0f47b4",
+        "type": "subflow",
+        "name": "farmos API result",
+        "info": "An OK/Cancel notification pops up after\nthe api request is made\n\nChecks if status code is 201 or not.\n\nInput = the result of the FarmOS API request\nIf msg.topic is not empty, the topic is used as\nsuccess message.\n\nOptional outputs\n1. output = success\n2. output = error\n\n",
+        "category": "farmOS",
+        "in": [
+            {
+                "x": 60,
+                "y": 100,
+                "wires": [
+                    {
+                        "id": "9cad4d8ae2685c80"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 880,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "9ead23c4d6f52d1b",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 890,
+                "y": 120,
+                "wires": [
+                    {
+                        "id": "22a22f1c8ef6328a",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [
+            {
+                "name": "Success message",
+                "type": "str",
+                "value": ""
+            },
+            {
+                "name": "Error message",
+                "type": "str",
+                "value": ""
+            }
+        ],
+        "meta": {
+            "desc": "Checks result from farmOS API request"
+        },
+        "color": "#D7D7A0",
+        "inputLabels": [
+            "farmOS API"
+        ],
+        "outputLabels": [
+            "Ok",
+            "Error"
+        ],
+        "icon": "font-awesome/fa-leaf"
+    },
+    {
+        "id": "9ead23c4d6f52d1b",
+        "type": "ui_toast",
+        "z": "6dfa64bb3b0f47b4",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "Cancel",
+        "raw": true,
+        "className": "",
+        "topic": "",
+        "name": "The log was saved",
+        "x": 710,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9cad4d8ae2685c80",
+        "type": "switch",
+        "z": "6dfa64bb3b0f47b4",
+        "name": "Result",
+        "property": "statusCode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "201",
+                "vt": "num"
+            },
+            {
+                "t": "neq",
+                "v": "201",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 190,
+        "y": 100,
+        "wires": [
+            [
+                "6a0c818f9c2d2631"
+            ],
+            [
+                "74b9e9878d9a4fa4"
+            ]
+        ]
+    },
+    {
+        "id": "22a22f1c8ef6328a",
+        "type": "ui_toast",
+        "z": "6dfa64bb3b0f47b4",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "Cancel",
+        "raw": true,
+        "className": "",
+        "topic": "",
+        "name": "Error",
+        "x": 750,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3e8522a5678016bc",
+        "type": "change",
+        "z": "6dfa64bb3b0f47b4",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Success message",
+                "tot": "env"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 490,
+        "y": 80,
+        "wires": [
+            [
+                "9ead23c4d6f52d1b"
+            ]
+        ]
+    },
+    {
+        "id": "74b9e9878d9a4fa4",
+        "type": "change",
+        "z": "6dfa64bb3b0f47b4",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Error message",
+                "tot": "env"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 490,
+        "y": 120,
+        "wires": [
+            [
+                "22a22f1c8ef6328a"
+            ]
+        ]
+    },
+    {
+        "id": "6a0c818f9c2d2631",
+        "type": "switch",
+        "z": "6dfa64bb3b0f47b4",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 330,
+        "y": 80,
+        "wires": [
+            [
+                "236a6b3962e1f288"
+            ],
+            [
+                "3e8522a5678016bc"
+            ]
+        ]
+    },
+    {
+        "id": "f87a7ce523f31392",
+        "type": "tab",
+        "label": "Tilvekstmåling",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "aa63a437f7680c53",
+        "type": "junction",
+        "z": "f87a7ce523f31392",
+        "x": 420,
+        "y": 140,
+        "wires": [
+            [
+                "56dfd160297875b0"
+            ]
+        ]
+    },
+    {
+        "id": "56dfd160297875b0",
+        "type": "junction",
+        "z": "f87a7ce523f31392",
+        "x": 520,
+        "y": 140,
+        "wires": [
+            [
+                "7e19dda5fd88ef21"
+            ]
+        ]
+    },
+    {
+        "id": "27493041baa58042",
+        "type": "change",
+        "z": "f87a7ce523f31392",
+        "name": "",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "Animals",
+                "pt": "flow"
+            },
+            {
+                "t": "set",
+                "p": "binge",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 280,
+        "y": 160,
+        "wires": [
+            [
+                "d5525253df867163"
+            ]
+        ]
+    },
+    {
+        "id": "d5525253df867163",
+        "type": "sf:949541c9b70110d5",
+        "z": "f87a7ce523f31392",
+        "name": "GET batches",
+        "API": "asset/animal?filter[flag]=monitor&filter[status]=active",
+        "Method": "GET",
+        "x": 490,
+        "y": 200,
+        "wires": [
+            [
+                "9ff1eecb76e0f32e",
+                "1ca22d06874494aa"
+            ]
+        ]
+    },
+    {
+        "id": "9ff1eecb76e0f32e",
+        "type": "function",
+        "z": "f87a7ce523f31392",
+        "name": "Save id's",
+        "func": "var array = flow.get('Animals') || [];\nvar name;\nvar id;\n\nmsg.payload.data.forEach(data => {\nname = data.attributes.name;\nid = data.id;\narray.push({id:id,name:name});\n})\n\nflow.set(\"Animals\", array);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 200,
+        "wires": [
+            [
+                "3fb76e3aa20c3a22"
+            ]
+        ]
+    },
+    {
+        "id": "3fb76e3aa20c3a22",
+        "type": "function",
+        "z": "f87a7ce523f31392",
+        "name": "options list",
+        "func": "var animals = flow.get(\"Animals\");\nvar array = [];\nvar name;\n\nanimals.forEach(data => {\n    name = data.name\n    array.push(name);\n   })\n\nmsg.options = array;\n\n// preselect batch\nmsg.payload = msg.options[0];\nflow.set(\"SelectedBatch\", msg.options[0])\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 830,
+        "y": 200,
+        "wires": [
+            [
+                "1920cacabad4ddbb"
+            ]
+        ]
+    },
+    {
+        "id": "1920cacabad4ddbb",
+        "type": "ui_dropdown",
+        "z": "f87a7ce523f31392",
+        "name": "",
+        "label": "Batch",
+        "tooltip": "",
+        "place": "",
+        "group": "c64999590e475999",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "multiple": false,
+        "options": [],
+        "payload": "",
+        "topic": "",
+        "topicType": "str",
+        "className": "",
+        "x": 990,
+        "y": 200,
+        "wires": [
+            [
+                "f35212618cbd4cc3"
+            ]
+        ]
+    },
+    {
+        "id": "520d0d99ea410313",
+        "type": "function",
+        "z": "f87a7ce523f31392",
+        "name": "Load Id's",
+        "func": "flow.set(\"vekt\", msg.payload.vekt);\nvar animals = flow.get(\"Animals\");\nvar name = flow.get(\"SelectedBatch\");\nvar array = [];\nvar id;\n\nanimals.forEach(data => {\n    if (data.name == name) {\n        id = data.id;\n        }\n   })\n\narray.push({id:id,name:name});\nflow.set(\"SelectedBatchID\", array[0].id)\nmsg.payload = array;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 234,
+        "y": 346,
+        "wires": [
+            [
+                "c4c82d858c9a373b"
+            ]
+        ]
+    },
+    {
+        "id": "74263de4552972e2",
+        "type": "sf:949541c9b70110d5",
+        "z": "f87a7ce523f31392",
+        "name": "",
+        "API": "log/observation",
+        "Method": "POST",
+        "x": 944,
+        "y": 346,
+        "wires": [
+            [
+                "76aaed038e59eb02",
+                "b7b561efd398d946"
+            ]
+        ]
+    },
+    {
+        "id": "76aaed038e59eb02",
+        "type": "debug",
+        "z": "f87a7ce523f31392",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1104,
+        "y": 306,
+        "wires": []
+    },
+    {
+        "id": "b90b70f5d8cc66cc",
+        "type": "comment",
+        "z": "f87a7ce523f31392",
+        "name": "Veiing av dyr",
+        "info": "",
+        "x": 90,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "f4285eabbafad5b1",
+        "type": "ui_dropdown",
+        "z": "f87a7ce523f31392",
+        "name": "",
+        "label": "Binge",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "c64999590e475999",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "33",
+                "value": "33",
+                "type": "str"
+            },
+            {
+                "label": "34",
+                "value": "34",
+                "type": "str"
+            },
+            {
+                "label": "35a",
+                "value": "35a",
+                "type": "str"
+            },
+            {
+                "label": "35b",
+                "value": "35b",
+                "type": "str"
+            },
+            {
+                "label": "36a",
+                "value": "36a",
+                "type": "str"
+            },
+            {
+                "label": "36b",
+                "value": "36b",
+                "type": "str"
+            },
+            {
+                "label": "37a",
+                "value": "37a",
+                "type": "str"
+            },
+            {
+                "label": "37b",
+                "value": "37b",
+                "type": "str"
+            },
+            {
+                "label": "38a",
+                "value": "38a",
+                "type": "str"
+            },
+            {
+                "label": "38b",
+                "value": "38b",
+                "type": "str"
+            },
+            {
+                "label": "39a",
+                "value": "39a",
+                "type": "str"
+            },
+            {
+                "label": "39b",
+                "value": "39b",
+                "type": "str"
+            },
+            {
+                "label": "40a",
+                "value": "40a",
+                "type": "str"
+            },
+            {
+                "label": "40b",
+                "value": "40b",
+                "type": "str"
+            },
+            {
+                "label": "41",
+                "value": "41",
+                "type": "str"
+            },
+            {
+                "label": "42",
+                "value": "42",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "",
+        "topicType": "str",
+        "className": "",
+        "x": 90,
+        "y": 100,
+        "wires": [
+            [
+                "27493041baa58042",
+                "98f959017eeeb5ef"
+            ]
+        ]
+    },
+    {
+        "id": "25ae20342019be0c",
+        "type": "ui_numeric",
+        "z": "f87a7ce523f31392",
+        "name": "",
+        "label": "Antall",
+        "tooltip": "",
+        "group": "c64999590e475999",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": "1",
+        "max": "30",
+        "step": 1,
+        "className": "",
+        "x": 470,
+        "y": 100,
+        "wires": [
+            [
+                "7e19dda5fd88ef21"
+            ]
+        ]
+    },
+    {
+        "id": "98f959017eeeb5ef",
+        "type": "change",
+        "z": "f87a7ce523f31392",
+        "name": "set flow variable",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "20",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 280,
+        "y": 100,
+        "wires": [
+            [
+                "25ae20342019be0c",
+                "aa63a437f7680c53"
+            ]
+        ]
+    },
+    {
+        "id": "442b078b0d192ff6",
+        "type": "ui_form",
+        "z": "f87a7ce523f31392",
+        "name": "",
+        "label": "Vekt",
+        "group": "c64999590e475999",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "",
+                "value": "vekt",
+                "type": "number",
+                "required": false,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "vekt": ""
+        },
+        "payload": "",
+        "submit": "Lagre",
+        "cancel": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "",
+        "x": 84,
+        "y": 346,
+        "wires": [
+            [
+                "520d0d99ea410313"
+            ]
+        ]
+    },
+    {
+        "id": "2bd7c20ad526f82d",
+        "type": "function",
+        "z": "f87a7ce523f31392",
+        "name": "prepare log",
+        "func": "\nmsg.payload =\n{\n    \"data\": {\n        \"type\": \"log--observation\",\n            \"attributes\": {\n            \"name\": \"Vekt binge \" + flow.get(\"binge\") +\" : \"+  flow.get(\"snitt\") +\" kg\",\n            \"status\": \"done\"\n        },\n        \"relationships\": {\n            \"category\": {\n                \"data\": [\n                    {\n                        \"type\": \"taxonomy_term--log_category\",\n                        \"id\": \"c5c8af8f-72b8-4fec-ab7d-15fabdbc476e\"\n                    }\n                ]\n            },\n            \"asset\": {\n                \"data\": [\n                    {\n                        \"type\": \"asset--animal\",\n                        \"id\": flow.get(\"SelectedBatchID\")\n                    }\n                ]\n            },\n            \"quantity\": {\n                \"data\": [\n                    {\n                        \"type\": \"quantity--standard\",\n                        \"id\": msg.payload.data.id\n                    }\n                ]\n            }\n        }\n    }\n}\n\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 784,
+        "y": 346,
+        "wires": [
+            [
+                "74263de4552972e2"
+            ]
+        ]
+    },
+    {
+        "id": "7e19dda5fd88ef21",
+        "type": "change",
+        "z": "f87a7ce523f31392",
+        "name": "set flow variable",
+        "rules": [
+            {
+                "t": "set",
+                "p": "antall",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 640,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1ca22d06874494aa",
+        "type": "debug",
+        "z": "f87a7ce523f31392",
+        "name": "debug 133",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "f35212618cbd4cc3",
+        "type": "debug",
+        "z": "f87a7ce523f31392",
+        "name": "debug 134",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1050,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "c4c82d858c9a373b",
+        "type": "function",
+        "z": "f87a7ce523f31392",
+        "name": "Create quantity",
+        "func": "flow.set(\"snitt\",flow.get(\"vekt\") / flow.get(\"antall\"));\nvar snitt = parseFloat(flow.get(\"snitt\")).toFixed(1);\n\nmsg.payload ={\n    \"data\":\n    {\n        \"type\": \"quantity--standard\",\n        \"attributes\": {\n            \n            \"measure\": \"weight\",\n            \"value\": {\n                \"numerator\": snitt,\n                \"denominator\": 1,\n                \"decimal\": snitt\n            },\n            \"label\": null,\n        },\n        \"relationships\": {\n            \"units\": {\n                \"data\": {\n                    \"type\": \"taxonomy_term--unit\",\n                    //\"id\": \"8f90ca1c-28dd-4c3b-b734-b011a54ad14c\"\n                    \"id\": \"63db299a-0784-4ed1-b589-1984f7915057\"\n                }\n            }\n        }\n    }\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 414,
+        "y": 346,
+        "wires": [
+            [
+                "b84ff53d32723358"
+            ]
+        ]
+    },
+    {
+        "id": "b84ff53d32723358",
+        "type": "sf:949541c9b70110d5",
+        "z": "f87a7ce523f31392",
+        "name": "",
+        "API": "quantity/standard",
+        "Method": "POST",
+        "x": 604,
+        "y": 346,
+        "wires": [
+            [
+                "2bd7c20ad526f82d",
+                "3fde174d37f2b5af"
+            ]
+        ]
+    },
+    {
+        "id": "3fde174d37f2b5af",
+        "type": "debug",
+        "z": "f87a7ce523f31392",
+        "name": "debug 136",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 784,
+        "y": 306,
+        "wires": []
+    },
+    {
+        "id": "0361037a82613272",
+        "type": "subflow:6dfa64bb3b0f47b4",
+        "z": "f87a7ce523f31392",
+        "name": "farmOS API result",
+        "env": [
+            {
+                "name": "Success message",
+                "value": "Lagret",
+                "type": "str"
+            },
+            {
+                "name": "Error message",
+                "value": "Noe gikk galt",
+                "type": "str"
+            }
+        ],
+        "x": 1364,
+        "y": 346,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "b7b561efd398d946",
+        "type": "function",
+        "z": "f87a7ce523f31392",
+        "name": "success message",
+        "func": "//var snitt = parseFloat(flow.get(\"snitt\")).toFixed(1);\n\nmsg.topic = \"Lagret \" + parseFloat(flow.get(\"snitt\")).toFixed(1) + \" kg\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1144,
+        "y": 346,
+        "wires": [
+            [
+                "0361037a82613272"
+            ]
+        ]
+    },
+    {
+        "id": "c64999590e475999",
+        "type": "ui_group",
+        "name": "Kontrollveiing",
+        "tab": "cc13e71c88ec137d",
+        "order": 2,
+        "disp": false,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "cc13e71c88ec137d",
+        "type": "ui_tab",
+        "name": "Mobil",
+        "icon": "fa-mobile",
+        "order": 27,
+        "disabled": false,
+        "hidden": false
+    }
+]
