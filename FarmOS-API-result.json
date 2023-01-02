@@ -70,7 +70,7 @@
         "position": "dialog",
         "displayTime": "3",
         "highlight": "",
-        "sendall": true,
+        "sendall": false,
         "outputs": 1,
         "ok": "OK",
         "cancel": "Cancel",
@@ -124,7 +124,7 @@
         "position": "dialog",
         "displayTime": "3",
         "highlight": "",
-        "sendall": true,
+        "sendall": false,
         "outputs": 1,
         "ok": "OK",
         "cancel": "Cancel",
@@ -238,8 +238,8 @@
                 "type": "str"
             }
         ],
-        "x": 1370,
-        "y": 360,
+        "x": 1364,
+        "y": 346,
         "wires": [
             [],
             []
