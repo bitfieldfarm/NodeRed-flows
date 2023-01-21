@@ -795,6 +795,6 @@
         "icon": "fa-icon-food",
         "order": 16,
         "disabled": false,
-        "hidden": false
+        "hidden": false 
     }
 ]
