@@ -1,0 +1,800 @@
+[
+    {
+        "id": "8836cb291aea120d",
+        "type": "tab",
+        "label": "Middag",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "75d91c8621eaa11d",
+        "type": "group",
+        "z": "8836cb291aea120d",
+        "name": "",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "909dd922ac3d08ee",
+            "a48e24d45cf9db8f",
+            "2822c92b5d7d3aa7",
+            "94381d5128e86ae7",
+            "67c360365c416886",
+            "753e380b924a81e3",
+            "ea9089c3b13c374b",
+            "6f86d90dcd860755",
+            "b77f3c6377224c05",
+            "32871b3e69ae5268",
+            "29a8966bf3ef50b9",
+            "ff4ec2c061912bd3",
+            "ac19f0cdafcab467",
+            "62e0e5aa9c07c399",
+            "55a770f9da7b7fb6"
+        ],
+        "x": 34,
+        "y": 539,
+        "w": 1132,
+        "h": 302
+    },
+    {
+        "id": "6252af819cbcb959",
+        "type": "group",
+        "z": "8836cb291aea120d",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "fd1a81b5495a2875",
+            "8c471a7763655890",
+            "a0870d3a9b2760a9",
+            "f8f738bf68028ff7",
+            "1d4169631efe863a",
+            "4269dc97ab047e13",
+            "0298f4bbbadea3a9"
+        ],
+        "x": 34,
+        "y": 299,
+        "w": 972,
+        "h": 182
+    },
+    {
+        "id": "e2ec6940f8fcf072",
+        "type": "group",
+        "z": "8836cb291aea120d",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "0ef3d31022e82fd5",
+            "144d8d1eadf0bdb9",
+            "fc6bf8c428496747",
+            "26569e89e2022c34",
+            "fa149cc0332dc2bc"
+        ],
+        "x": 34,
+        "y": 79,
+        "w": 672,
+        "h": 142
+    },
+    {
+        "id": "0ef3d31022e82fd5",
+        "type": "ui_form",
+        "z": "8836cb291aea120d",
+        "g": "e2ec6940f8fcf072",
+        "name": "",
+        "label": "",
+        "group": "92a2e940d90e071c",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Ny rett",
+                "value": "newitem",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Lettvint?",
+                "value": "easyitem",
+                "type": "checkbox",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "Fisk",
+                "value": "fish_item",
+                "type": "checkbox",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "Lørdagsmat",
+                "value": "sat_item",
+                "type": "checkbox",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "Søndagsmat",
+                "value": "sun_item",
+                "type": "checkbox",
+                "required": false,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "newitem": "",
+            "easyitem": false,
+            "fish_item": false,
+            "sat_item": false,
+            "sun_item": false
+        },
+        "payload": "",
+        "submit": "Lagre",
+        "cancel": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "",
+        "x": 130,
+        "y": 180,
+        "wires": [
+            [
+                "fc6bf8c428496747"
+            ]
+        ]
+    },
+    {
+        "id": "fd1a81b5495a2875",
+        "type": "file in",
+        "z": "8836cb291aea120d",
+        "g": "6252af819cbcb959",
+        "name": "",
+        "filename": "food.csv",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 300,
+        "y": 440,
+        "wires": [
+            [
+                "a0870d3a9b2760a9"
+            ]
+        ]
+    },
+    {
+        "id": "8c471a7763655890",
+        "type": "inject",
+        "z": "8836cb291aea120d",
+        "g": "6252af819cbcb959",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 15 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 440,
+        "wires": [
+            [
+                "fd1a81b5495a2875"
+            ]
+        ]
+    },
+    {
+        "id": "144d8d1eadf0bdb9",
+        "type": "debug",
+        "z": "8836cb291aea120d",
+        "g": "e2ec6940f8fcf072",
+        "name": "debug 184",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "fc6bf8c428496747",
+        "type": "csv",
+        "z": "8836cb291aea120d",
+        "g": "e2ec6940f8fcf072",
+        "name": "",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 270,
+        "y": 180,
+        "wires": [
+            [
+                "26569e89e2022c34"
+            ]
+        ]
+    },
+    {
+        "id": "26569e89e2022c34",
+        "type": "file",
+        "z": "8836cb291aea120d",
+        "g": "e2ec6940f8fcf072",
+        "name": "",
+        "filename": "food.csv",
+        "filenameType": "str",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 420,
+        "y": 180,
+        "wires": [
+            [
+                "144d8d1eadf0bdb9"
+            ]
+        ]
+    },
+    {
+        "id": "a0870d3a9b2760a9",
+        "type": "csv",
+        "z": "8836cb291aea120d",
+        "g": "6252af819cbcb959",
+        "name": "",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "none",
+        "multi": "mult",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 450,
+        "y": 440,
+        "wires": [
+            [
+                "f8f738bf68028ff7"
+            ]
+        ]
+    },
+    {
+        "id": "f8f738bf68028ff7",
+        "type": "function",
+        "z": "8836cb291aea120d",
+        "g": "6252af819cbcb959",
+        "name": "Pick a dish",
+        "func": "var nr = Math.floor(Math.random() * msg.payload.length);\n\nnode.warn(\"randon is: \"+nr);\n\nmsg.payload = msg.payload[nr].Rett;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 440,
+        "wires": [
+            [
+                "1d4169631efe863a"
+            ]
+        ]
+    },
+    {
+        "id": "909dd922ac3d08ee",
+        "type": "ui_button",
+        "z": "8836cb291aea120d",
+        "g": "75d91c8621eaa11d",
+        "name": "Middag",
+        "group": "92a2e940d90e071c",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Middagsforslag",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 120,
+        "y": 640,
+        "wires": [
+            [
+                "a48e24d45cf9db8f"
+            ]
+        ]
+    },
+    {
+        "id": "32871b3e69ae5268",
+        "type": "ui_button",
+        "z": "8836cb291aea120d",
+        "g": "75d91c8621eaa11d",
+        "name": "Lørdag",
+        "group": "92a2e940d90e071c",
+        "order": 4,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "Lørdag",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "darkred",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 120,
+        "y": 720,
+        "wires": [
+            [
+                "67c360365c416886"
+            ]
+        ]
+    },
+    {
+        "id": "b77f3c6377224c05",
+        "type": "ui_button",
+        "z": "8836cb291aea120d",
+        "g": "75d91c8621eaa11d",
+        "name": "Lettvint",
+        "group": "92a2e940d90e071c",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Lettvint middag",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 120,
+        "y": 680,
+        "wires": [
+            [
+                "94381d5128e86ae7"
+            ]
+        ]
+    },
+    {
+        "id": "ff4ec2c061912bd3",
+        "type": "ui_button",
+        "z": "8836cb291aea120d",
+        "g": "75d91c8621eaa11d",
+        "name": "Fisk",
+        "group": "92a2e940d90e071c",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Fisk",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "blueeyes",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 130,
+        "y": 800,
+        "wires": [
+            [
+                "ea9089c3b13c374b"
+            ]
+        ]
+    },
+    {
+        "id": "29a8966bf3ef50b9",
+        "type": "ui_button",
+        "z": "8836cb291aea120d",
+        "g": "75d91c8621eaa11d",
+        "name": "Søndag",
+        "group": "92a2e940d90e071c",
+        "order": 5,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "Søndag",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "darkred",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 120,
+        "y": 760,
+        "wires": [
+            [
+                "753e380b924a81e3"
+            ]
+        ]
+    },
+    {
+        "id": "62e0e5aa9c07c399",
+        "type": "ui_template",
+        "z": "8836cb291aea120d",
+        "g": "75d91c8621eaa11d",
+        "group": "92a2e940d90e071c",
+        "name": "",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "format": "</h2><div ng-bind-html=\"msg.payload\"></h2></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1080,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2822c92b5d7d3aa7",
+        "type": "file in",
+        "z": "8836cb291aea120d",
+        "g": "75d91c8621eaa11d",
+        "name": "",
+        "filename": "food.csv",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 540,
+        "y": 680,
+        "wires": [
+            [
+                "6f86d90dcd860755"
+            ]
+        ]
+    },
+    {
+        "id": "6f86d90dcd860755",
+        "type": "csv",
+        "z": "8836cb291aea120d",
+        "g": "75d91c8621eaa11d",
+        "name": "",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "none",
+        "multi": "mult",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 690,
+        "y": 680,
+        "wires": [
+            [
+                "ac19f0cdafcab467"
+            ]
+        ]
+    },
+    {
+        "id": "ac19f0cdafcab467",
+        "type": "function",
+        "z": "8836cb291aea120d",
+        "g": "75d91c8621eaa11d",
+        "name": "function 53",
+        "func": "let food = msg.payload;\n\n// check for wanted dish type\nswitch (flow.get(\"food_type\")) {\n    case \"Lettvint\":\n        let dishes1 = food.filter(foodtype => foodtype.Lettvint == \"true\");\n        msg.payload = dishes1;\n        break;\n    case \"Lørdag\":\n        let dishes2 = food.filter(foodtype => foodtype[\"Lørdag\"] == \"true\");\n        msg.payload = dishes2;\n        break;\n    case \"Søndag\":\n        let dishes3 = food.filter(foodtype => foodtype[\"Søndag\"] == \"true\");\n        msg.payload = dishes3;\n        break;\n    case \"Fisk\":\n        let dishes4 = food.filter(foodtype => foodtype[\"Fisk\"] == \"true\");\n        msg.payload = dishes4;\n    default:\n        //All dishes\n        //msg.payload = food;\n        break;\n}\n\n// pick a dish from wanted dish type\n\nvar nr = Math.floor(Math.random() * msg.payload.length);\n//node.warn(\"random : \" + nr); //debug\n\nmsg.payload = \"Middagsforslag : \" +msg.payload[nr].Rett;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 910,
+        "y": 680,
+        "wires": [
+            [
+                "62e0e5aa9c07c399"
+            ]
+        ]
+    },
+    {
+        "id": "94381d5128e86ae7",
+        "type": "change",
+        "z": "8836cb291aea120d",
+        "g": "75d91c8621eaa11d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "food_type",
+                "pt": "flow",
+                "to": "Lettvint",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 290,
+        "y": 680,
+        "wires": [
+            [
+                "2822c92b5d7d3aa7"
+            ]
+        ]
+    },
+    {
+        "id": "a48e24d45cf9db8f",
+        "type": "change",
+        "z": "8836cb291aea120d",
+        "g": "75d91c8621eaa11d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "food_type",
+                "pt": "flow",
+                "to": "Middag",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 290,
+        "y": 640,
+        "wires": [
+            [
+                "2822c92b5d7d3aa7"
+            ]
+        ]
+    },
+    {
+        "id": "67c360365c416886",
+        "type": "change",
+        "z": "8836cb291aea120d",
+        "g": "75d91c8621eaa11d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "food_type",
+                "pt": "flow",
+                "to": "Lørdag",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 290,
+        "y": 720,
+        "wires": [
+            [
+                "2822c92b5d7d3aa7"
+            ]
+        ]
+    },
+    {
+        "id": "753e380b924a81e3",
+        "type": "change",
+        "z": "8836cb291aea120d",
+        "g": "75d91c8621eaa11d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "food_type",
+                "pt": "flow",
+                "to": "Søndag",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 290,
+        "y": 760,
+        "wires": [
+            [
+                "2822c92b5d7d3aa7"
+            ]
+        ]
+    },
+    {
+        "id": "ea9089c3b13c374b",
+        "type": "change",
+        "z": "8836cb291aea120d",
+        "g": "75d91c8621eaa11d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "food_type",
+                "pt": "flow",
+                "to": "Fisk",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 290,
+        "y": 800,
+        "wires": [
+            [
+                "2822c92b5d7d3aa7"
+            ]
+        ]
+    },
+    {
+        "id": "1d4169631efe863a",
+        "type": "credentials",
+        "z": "8836cb291aea120d",
+        "g": "6252af819cbcb959",
+        "name": "ntfy url",
+        "props": [
+            {
+                "value": "url",
+                "type": "msg"
+            }
+        ],
+        "x": 770,
+        "y": 440,
+        "wires": [
+            [
+                "4269dc97ab047e13"
+            ]
+        ]
+    },
+    {
+        "id": "4269dc97ab047e13",
+        "type": "http request",
+        "z": "8836cb291aea120d",
+        "g": "6252af819cbcb959",
+        "name": "Alert",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "other",
+                "keyValue": "Title",
+                "valueType": "other",
+                "valueValue": "Middag i morgen"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "Tags",
+                "valueType": "other",
+                "valueValue": "cut_of_meat"
+            }
+        ],
+        "x": 930,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "55a770f9da7b7fb6",
+        "type": "comment",
+        "z": "8836cb291aea120d",
+        "g": "75d91c8621eaa11d",
+        "name": "What's for dinner tomorrow?",
+        "info": "",
+        "x": 200,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "0298f4bbbadea3a9",
+        "type": "comment",
+        "z": "8836cb291aea120d",
+        "g": "6252af819cbcb959",
+        "name": "Dinner tomorrow alert",
+        "info": "",
+        "x": 160,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "fa149cc0332dc2bc",
+        "type": "comment",
+        "z": "8836cb291aea120d",
+        "g": "e2ec6940f8fcf072",
+        "name": "Add new dinner",
+        "info": "",
+        "x": 140,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "92a2e940d90e071c",
+        "type": "ui_group",
+        "name": "Group 1",
+        "tab": "62712bbf.888b94",
+        "order": 1,
+        "disp": false,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "62712bbf.888b94",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "fa-icon-food",
+        "order": 16,
+        "disabled": false,
+        "hidden": false
+    }
+]
