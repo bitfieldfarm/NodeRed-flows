@@ -1,0 +1,945 @@
+[
+    {
+        "id": "1ca30f9571004237",
+        "type": "tab",
+        "label": "Activities and batches",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "0fc4a68b54ea48a2",
+        "type": "group",
+        "z": "1ca30f9571004237",
+        "name": "",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "57b68591519b4334",
+            "56ff854a94d41088",
+            "d407480af7a3ebed",
+            "3982b605e0d4a7d5",
+            "6df8798451d65ec6",
+            "568a45f18a183960",
+            "09851bef89adefd8",
+            "25300c4c9e94ef74",
+            "c248005b3f36b217",
+            "d6d5a168588bd1db",
+            "22d3e9039a538d47",
+            "2164119ab499ce4d",
+            "ba41e7f845540ca8"
+        ],
+        "x": 14,
+        "y": 39,
+        "w": 1632,
+        "h": 182
+    },
+    {
+        "id": "f5ada9dfba28467e",
+        "type": "group",
+        "z": "1ca30f9571004237",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "c3c4c2128e8c1d60",
+            "0f287ee59b8d5d7e",
+            "0f393f70fbcfc595",
+            "5896cb534143e189",
+            "0106876fe2e1bda5",
+            "eb602302756bd61a",
+            "ba1421ec9caa4164",
+            "936a8cf7ef0b2303",
+            "d2615e9aef52ce1b",
+            "d90f01346d208c78",
+            "c765f372bc8dd189",
+            "d48e1481e4d27e0f",
+            "88439705c9f198cd",
+            "add0f7e660684c1d",
+            "748a366954c92cc6",
+            "e6bc35010ae62651",
+            "42c4396559442acc",
+            "3115ed60a8d7d05c",
+            "e69afabae93c81c2",
+            "318072a75262242b",
+            "b2f80779140177d2"
+        ],
+        "x": 14,
+        "y": 259,
+        "w": 1692,
+        "h": 242
+    },
+    {
+        "id": "0f393f70fbcfc595",
+        "type": "junction",
+        "z": "1ca30f9571004237",
+        "g": "f5ada9dfba28467e",
+        "x": 140,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d6d5a168588bd1db",
+        "type": "ical-upcoming",
+        "z": "1ca30f9571004237",
+        "g": "0fc4a68b54ea48a2",
+        "confignode": "21bc7d179d3b11e8",
+        "timeout": "1",
+        "timeoutUnits": "hours",
+        "cron": "",
+        "name": "",
+        "offsettype": "",
+        "offset": "",
+        "offsetUnitstype": "",
+        "offsetUnits": "",
+        "eventtypes": "events",
+        "eventtypestype": "str",
+        "calendar": "",
+        "calendartype": "str",
+        "triggertype": "trigger",
+        "trigger": "always",
+        "timezone": "",
+        "timezonetype": "str",
+        "dateformat": "{ \"timeStyle\": \"short\", \"dateStyle\": \"short\" }",
+        "dateformattype": "json",
+        "language": "en",
+        "languagetype": "language",
+        "filterProperty": "summary",
+        "filterPropertytype": "filterProperty",
+        "filterOperator": "between",
+        "filterOperatortype": "filterOperator",
+        "filtertype": "str",
+        "filter2type": "str",
+        "filter2": "",
+        "filter": "",
+        "checkall": false,
+        "endpreview": "",
+        "endpreviewUnits": "",
+        "previewtype": "num",
+        "preview": "21",
+        "previewUnitstype": "previewUnits",
+        "previewUnits": "days",
+        "pastviewtype": "num",
+        "pastview": "7",
+        "pastviewUnits": "days",
+        "pastviewUnitstype": "pastviewUnits",
+        "x": 330,
+        "y": 180,
+        "wires": [
+            [
+                "25300c4c9e94ef74"
+            ]
+        ]
+    },
+    {
+        "id": "25300c4c9e94ef74",
+        "type": "split",
+        "z": "1ca30f9571004237",
+        "g": "0fc4a68b54ea48a2",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 490,
+        "y": 180,
+        "wires": [
+            [
+                "09851bef89adefd8"
+            ]
+        ]
+    },
+    {
+        "id": "ba41e7f845540ca8",
+        "type": "comment",
+        "z": "1ca30f9571004237",
+        "g": "0fc4a68b54ea48a2",
+        "name": "Show calendar on dashboard",
+        "info": "",
+        "x": 160,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "09851bef89adefd8",
+        "type": "change",
+        "z": "1ca30f9571004237",
+        "g": "0fc4a68b54ea48a2",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.date",
+                "pt": "msg",
+                "to": "($dates := $split($$.payload.date, \" – \");\t$toMillis($moment($dates[0]).format())\t)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 660,
+        "y": 180,
+        "wires": [
+            [
+                "568a45f18a183960",
+                "c248005b3f36b217"
+            ]
+        ]
+    },
+    {
+        "id": "6df8798451d65ec6",
+        "type": "debug",
+        "z": "1ca30f9571004237",
+        "g": "0fc4a68b54ea48a2",
+        "name": "debug 28",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1400,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "568a45f18a183960",
+        "type": "moment",
+        "z": "1ca30f9571004237",
+        "g": "0fc4a68b54ea48a2",
+        "name": "",
+        "topic": "",
+        "input": "payload.date",
+        "inputType": "msg",
+        "inTz": "Europe/Oslo",
+        "adjAmount": 0,
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "fromnow",
+        "locale": "nb-no",
+        "output": "payload.date",
+        "outputType": "msg",
+        "outTz": "Europe/Oslo",
+        "x": 880,
+        "y": 180,
+        "wires": [
+            [
+                "3982b605e0d4a7d5"
+            ]
+        ]
+    },
+    {
+        "id": "3982b605e0d4a7d5",
+        "type": "function",
+        "z": "1ca30f9571004237",
+        "g": "0fc4a68b54ea48a2",
+        "name": "Format list",
+        "func": "msg.payload = \"<H2 style:'color red'>\"+ msg.payload.summary + \" </H2> \" + msg.payload.date\nreturn msg; \n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1070,
+        "y": 180,
+        "wires": [
+            [
+                "d407480af7a3ebed"
+            ]
+        ]
+    },
+    {
+        "id": "56ff854a94d41088",
+        "type": "ui_list",
+        "z": "1ca30f9571004237",
+        "g": "0fc4a68b54ea48a2",
+        "group": "2f06e15cd366024b",
+        "name": "Upcoming 21 days",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "lineType": "three",
+        "actionType": "click",
+        "allowHTML": true,
+        "outputs": 1,
+        "topic": "",
+        "x": 1390,
+        "y": 180,
+        "wires": [
+            [
+                "57b68591519b4334"
+            ]
+        ]
+    },
+    {
+        "id": "d407480af7a3ebed",
+        "type": "join",
+        "z": "1ca30f9571004237",
+        "g": "0fc4a68b54ea48a2",
+        "name": "",
+        "mode": "auto",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": true,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 1210,
+        "y": 180,
+        "wires": [
+            [
+                "56ff854a94d41088",
+                "6df8798451d65ec6"
+            ]
+        ]
+    },
+    {
+        "id": "2164119ab499ce4d",
+        "type": "inject",
+        "z": "1ca30f9571004237",
+        "g": "0fc4a68b54ea48a2",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 180,
+        "wires": [
+            [
+                "d6d5a168588bd1db"
+            ]
+        ]
+    },
+    {
+        "id": "0f287ee59b8d5d7e",
+        "type": "switch",
+        "z": "1ca30f9571004237",
+        "g": "f5ada9dfba28467e",
+        "name": "",
+        "property": "payload.title",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "Avvenning",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "Grising",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 230,
+        "y": 420,
+        "wires": [
+            [
+                "5896cb534143e189"
+            ],
+            [
+                "0106876fe2e1bda5"
+            ]
+        ]
+    },
+    {
+        "id": "ba1421ec9caa4164",
+        "type": "ui_toast",
+        "z": "1ca30f9571004237",
+        "g": "f5ada9dfba28467e",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": false,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "Avbryt",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "OK / Cancel",
+        "x": 570,
+        "y": 400,
+        "wires": [
+            [
+                "d90f01346d208c78"
+            ]
+        ]
+    },
+    {
+        "id": "5896cb534143e189",
+        "type": "change",
+        "z": "1ca30f9571004237",
+        "g": "f5ada9dfba28467e",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Opprett ny pulje med smågris",
+                "tot": "str"
+            },
+            {
+                "t": "delete",
+                "p": "last_weaned_group",
+                "pt": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 400,
+        "wires": [
+            [
+                "ba1421ec9caa4164"
+            ]
+        ]
+    },
+    {
+        "id": "add0f7e660684c1d",
+        "type": "sf:949541c9b70110d5",
+        "z": "1ca30f9571004237",
+        "g": "f5ada9dfba28467e",
+        "name": "Create batch",
+        "API": "asset/animal",
+        "Method": "POST",
+        "x": 1030,
+        "y": 400,
+        "wires": [
+            [
+                "e6bc35010ae62651",
+                "42c4396559442acc"
+            ]
+        ]
+    },
+    {
+        "id": "d48e1481e4d27e0f",
+        "type": "function",
+        "z": "1ca30f9571004237",
+        "g": "f5ada9dfba28467e",
+        "name": "Add pig batch",
+        "func": "var asset;\nvar dateString = new Date().toLocaleDateString('nb-NO')\nvar dateString = dateString.toString().split(\" \", 3).join(\" \");\nvar dato = dateString;\nvar batch_name = \"Avvent \" + dato;\nglobal.set(\"current_batch_name\", batch_name)\n\n// TODO: Bytt ut navn: med variabelen\nasset = {\n    \"data\": {\n        \"type\": \"asset--animal\",\n        \"attributes\": {\n            \"name\": \"Avvent \" + dato,\n            \"flag\": [\n                \"monitor\"\n            ],\n        },\n        \"relationships\": {\n            \"animal_type\": {\n                \"data\": {\n                    \"type\": \"taxonomy_term--animal_type\",\n                    \"id\": \"ed070c4d-ca91-454f-bb5a-8ddfd044f20e\"\n                }\n            },\n            \"parent\": {\n                \"data\": [\n                    {\n                        \"type\": \"asset--animal\",\n                        \"id\": \"cc792b41-9a07-4faa-9630-6f1e6e977113\"\n                    }\n                ],\n            }\n        },\n    }\n}\nmsg.payload = asset\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 400,
+        "wires": [
+            [
+                "add0f7e660684c1d"
+            ]
+        ]
+    },
+    {
+        "id": "e6bc35010ae62651",
+        "type": "switch",
+        "z": "1ca30f9571004237",
+        "g": "f5ada9dfba28467e",
+        "name": "Result",
+        "property": "statusCode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "201",
+                "vt": "num"
+            },
+            {
+                "t": "neq",
+                "v": "201",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1230,
+        "y": 420,
+        "wires": [
+            [
+                "3115ed60a8d7d05c"
+            ],
+            [
+                "e69afabae93c81c2"
+            ]
+        ]
+    },
+    {
+        "id": "3115ed60a8d7d05c",
+        "type": "change",
+        "z": "1ca30f9571004237",
+        "g": "f5ada9dfba28467e",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "last_weaned_group",
+                "pt": "global",
+                "to": "payload.data.id",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "<a href=\"https://homefarm.farmos.net/assets/animal\">Sjekk loggen i FarmOS</a>",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1400,
+        "y": 400,
+        "wires": [
+            [
+                "318072a75262242b"
+            ]
+        ]
+    },
+    {
+        "id": "318072a75262242b",
+        "type": "ui_toast",
+        "z": "1ca30f9571004237",
+        "g": "f5ada9dfba28467e",
+        "position": "prompt",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "Cancel",
+        "raw": true,
+        "className": "",
+        "topic": "Lagret i FarmOS",
+        "name": "The log was saved",
+        "x": 1590,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e69afabae93c81c2",
+        "type": "ui_toast",
+        "z": "1ca30f9571004237",
+        "g": "f5ada9dfba28467e",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "Doh!!",
+        "cancel": "",
+        "raw": true,
+        "className": "",
+        "topic": "Noe gikk galt. Sjekk innlogging til FarmOS",
+        "name": "Error",
+        "x": 1550,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b2f80779140177d2",
+        "type": "comment",
+        "z": "1ca30f9571004237",
+        "g": "f5ada9dfba28467e",
+        "name": "Add pig batch",
+        "info": "Creates an animal asset in farmOS for the \nbatch. \n\nOther flows makes use of this batches. E.g. weight measuring.\nIt also serves as an url on the dashboard to the animal asset in farmOS\n\nAdd pig batch is intended to create the assets by tapping on the weaning or farrowing\nevent. The asset is then created from that time. \nEvents that happen during that asstes period can be related to \nthis asset.",
+        "x": 110,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "c248005b3f36b217",
+        "type": "switch",
+        "z": "1ca30f9571004237",
+        "g": "0fc4a68b54ea48a2",
+        "name": "if weaning",
+        "property": "payload.summary",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Grising",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 860,
+        "y": 120,
+        "wires": [
+            [
+                "22d3e9039a538d47"
+            ]
+        ]
+    },
+    {
+        "id": "d90f01346d208c78",
+        "type": "switch",
+        "z": "1ca30f9571004237",
+        "g": "f5ada9dfba28467e",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "OK",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 710,
+        "y": 400,
+        "wires": [
+            [
+                "d48e1481e4d27e0f"
+            ]
+        ]
+    },
+    {
+        "id": "d2615e9aef52ce1b",
+        "type": "ui_toast",
+        "z": "1ca30f9571004237",
+        "g": "f5ada9dfba28467e",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": false,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "Avbryt",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "OK / Cancel",
+        "x": 570,
+        "y": 440,
+        "wires": [
+            [
+                "c765f372bc8dd189"
+            ]
+        ]
+    },
+    {
+        "id": "c765f372bc8dd189",
+        "type": "switch",
+        "z": "1ca30f9571004237",
+        "g": "f5ada9dfba28467e",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "OK",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 710,
+        "y": 440,
+        "wires": [
+            [
+                "88439705c9f198cd"
+            ]
+        ]
+    },
+    {
+        "id": "88439705c9f198cd",
+        "type": "function",
+        "z": "1ca30f9571004237",
+        "g": "f5ada9dfba28467e",
+        "name": "Add farrowing ",
+        "func": "var asset;\nvar dateString = new Date().toLocaleDateString('nb-NO')\nvar dateString = dateString.toString().split(\" \", 3).join(\" \");\n//var dateString = new Date().toString().split(\" \", 3).join(\" \");\nvar dato = dateString;\n\n//msg.slots = { date: dateString }\n\nasset = {\n    \"data\": {\n        \"type\": \"asset--animal\",\n        \"attributes\": {\n            \"name\": \"Diende \" + dato,\n            \"flag\": [\n                \"monitor\"\n            ],\n        },\n        \"relationships\": {\n            \"animal_type\": {\n                \"data\": {\n                    \"type\": \"taxonomy_term--animal_type\",\n                    \"id\": \"ed070c4d-ca91-454f-bb5a-8ddfd044f20e\"\n                }\n            }\n        },\n    }\n}\nmsg.payload = asset\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 440,
+        "wires": [
+            [
+                "748a366954c92cc6"
+            ]
+        ]
+    },
+    {
+        "id": "748a366954c92cc6",
+        "type": "sf:949541c9b70110d5",
+        "z": "1ca30f9571004237",
+        "g": "f5ada9dfba28467e",
+        "name": "Create batch",
+        "API": "asset/animal",
+        "Method": "POST",
+        "x": 1030,
+        "y": 440,
+        "wires": [
+            [
+                "e6bc35010ae62651"
+            ]
+        ]
+    },
+    {
+        "id": "936a8cf7ef0b2303",
+        "type": "inject",
+        "z": "1ca30f9571004237",
+        "g": "f5ada9dfba28467e",
+        "name": "Farrowing",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "Grising",
+        "x": 210,
+        "y": 460,
+        "wires": [
+            [
+                "0106876fe2e1bda5"
+            ]
+        ]
+    },
+    {
+        "id": "0106876fe2e1bda5",
+        "type": "change",
+        "z": "1ca30f9571004237",
+        "g": "f5ada9dfba28467e",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Opprett ny pulje med smågris",
+                "tot": "str"
+            },
+            {
+                "t": "delete",
+                "p": "last_farrowed_group",
+                "pt": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 440,
+        "wires": [
+            [
+                "d2615e9aef52ce1b"
+            ]
+        ]
+    },
+    {
+        "id": "eb602302756bd61a",
+        "type": "inject",
+        "z": "1ca30f9571004237",
+        "g": "f5ada9dfba28467e",
+        "name": "Weaning",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 210,
+        "y": 380,
+        "wires": [
+            [
+                "5896cb534143e189"
+            ]
+        ]
+    },
+    {
+        "id": "42c4396559442acc",
+        "type": "change",
+        "z": "1ca30f9571004237",
+        "g": "f5ada9dfba28467e",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "current_weaned_batch_id",
+                "pt": "global",
+                "to": "payload.data.id",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1340,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "22d3e9039a538d47",
+        "type": "function",
+        "z": "1ca30f9571004237",
+        "g": "0fc4a68b54ea48a2",
+        "name": "function 50",
+        "func": "var today = new Date().getTime();\nvar eventdate = new Date(msg.payload.eventStart).getTime();\nvar diff = eventdate - today;\n\nif ( diff / 86400000 << 8 ) {\n    // Legg til påminnelse\n    return [msg, null];\n} else {\n    return [null, msg];\n};\n",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1010,
+        "y": 120,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "57b68591519b4334",
+        "type": "link out",
+        "z": "1ca30f9571004237",
+        "g": "0fc4a68b54ea48a2",
+        "name": "Activities",
+        "mode": "link",
+        "links": [
+            "c3c4c2128e8c1d60"
+        ],
+        "x": 1605,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "c3c4c2128e8c1d60",
+        "type": "link in",
+        "z": "1ca30f9571004237",
+        "g": "f5ada9dfba28467e",
+        "name": "Add batches",
+        "links": [
+            "57b68591519b4334",
+            "fcd55f4ce82f9350"
+        ],
+        "x": 75,
+        "y": 420,
+        "wires": [
+            [
+                "0f287ee59b8d5d7e"
+            ]
+        ]
+    },
+    {
+        "id": "21bc7d179d3b11e8",
+        "type": "ical-config",
+        "url": "",
+        "caldav": "",
+        "caltype": "ical",
+        "name": "FM",
+        "language": "en",
+        "replacedates": true,
+        "usecache": false,
+        "username": "",
+        "password": "",
+        "calendar": "",
+        "pastWeeks": "0",
+        "futureWeeks": "4",
+        "credentials": {
+            "user": "",
+            "pass": ""
+        }
+    },
+    {
+        "id": "2f06e15cd366024b",
+        "type": "ui_group",
+        "name": "Aktiviteter",
+        "tab": "aa4e56286fd1b949",
+        "order": 3,
+        "disp": true,
+        "width": "8",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "aa4e56286fd1b949",
+        "type": "ui_tab",
+        "name": "Dagen idag",
+        "icon": "developer_dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
