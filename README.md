@@ -22,3 +22,6 @@ See comments within flow for details
 ### Add_Activity.json 
 Subflow to provide visual feedback of result when making a request to farmOS
 
+### Graindryer.json
+Flow integrated with HomeAssistant for stopping the grain dryer by various triggers.
+![image](https://github.com/bitfieldfarm/NodeRed-flows/assets/98184919/ced1c060-7b9e-40fd-8861-0b9e76c1c5c0)
